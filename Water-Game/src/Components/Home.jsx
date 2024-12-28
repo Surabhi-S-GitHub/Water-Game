@@ -1,39 +1,48 @@
-import AboutUs from './AboutUs'
-import React from 'react'
-import { useRef } from 'react';
+import React from 'react';
 
 function Home() {
-    const aboutSectionRef = useRef(null);
+  const cards = [
+    {
+      image: 'https://via.placeholder.com/150', // Replace with actual image URL
+      title: 'Game 1',
+      points: 100,
+    },
+    {
+      image: 'https://via.placeholder.com/150', // Replace with actual image URL
+      title: 'Game 2',
+      points: 200,
+    },
+    {
+      image: 'https://via.placeholder.com/150', // Replace with actual image URL
+      title: 'Game 3',
+      points: 300,
+    },
+    {
+      image: 'https://via.placeholder.com/150', // Replace with actual image URL
+      title: 'Game 4',
+      points: 400,
+    },
+  ];
 
-    const scrollToAboutUs = () => {
-        if (aboutSectionRef.current) {
-          aboutSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-      };
   return (
-    <>
-      <nav className="bg-cyan-700 text-white p-4">
-      <div className="container mx-auto flex justify-between items-center ">
-        <div className="text-3xl font-bold text-center flex-1 italic">Aqua Smart</div>
-
-      
-        <div className="flex space-x-6">
-        <button className="bg-blue-700 px-4 py-2 rounded hover:bg-blue-600 ">Home</button>
-        <button className="bg-blue-700 px-4 py-2 rounded hover:bg-blue-600" onClick={scrollToAboutUs}>About Us</button>
-        <button className="bg-blue-700 px-4 py-2 rounded hover:bg-blue-600">Leader Board</button>
-        <button className="bg-blue-700 px-4 py-2 rounded hover:bg-blue-600">Login</button>
-        <button className="bg-blue-700 px-4 py-2 rounded hover:bg-blue-600">Register</button>
-        </div>
-
-        
-        
+    <div className="p-8">
+      <div className="grid grid-cols-2 gap-8">
+        {cards.map((card, index) => (
+          <div
+            key={index}
+            className="bg-white shadow-lg rounded-lg p-4 h-70 w-60 flex flex-col items-center"
+          >
+            <img src={card.image} alt={card.title} className="h-32 w-full object-cover rounded" />
+            <h3 className="mt-4 text-lg font-bold">{card.title}</h3>
+            <p className="mt-2 text-gray-700">Points: {card.points}</p>
+            <button className="mt-auto bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+              Let's Play
+            </button>
+          </div>
+        ))}
       </div>
-      <div ref={aboutSectionRef}>
-        <AboutUs /> 
-      </div>
-    </nav>
-    </>
-  )
+    </div>
+  );
 }
 
-export default Home
+export default Home;
